@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Delete"
+    android:background="#D98880">
+
+    <Spinner
+        android:id="@+id/SpinnerName"
+        android:layout_width="375dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp" />
+
+    <Button
+        android:layout_centerHorizontal="true"
+        android:id="@+id/Deletedbutton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="189dp"
+        android:background="@android:color/holo_red_light"
+        android:text="Delete"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#050505"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".SplashScreen">
+
+    <ImageView
+        android:id="@+id/splashscreen"
+        android:layout_width="280dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:src="@drawable/krishi_logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="#4CAF50"
+        android:textSize="40dp"
+        android:textStyle="bold" />
+
+    
+
+</LinearLayout>

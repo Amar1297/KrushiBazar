@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B5EB8F"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:fontFamily="serif"
+        android:text="Krushi Bazaar"
+        android:textAlignment="center"
+        android:textColor="#FF5722"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/start_btn"
+        android:layout_width="275dp"
+        android:layout_height="211dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/supplier"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/customer"
+        android:layout_width="275dp"
+        android:layout_height="241dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/user"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="OR"
+        android:textColor="#000"
+        android:textSize="40dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="151dp"
+        android:orientation="vertical"></LinearLayout>
+
+    <ToggleButton
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#EC6593"
+
+        android:checked="true"
+        android:clickable="true"
+        android:text="ToggleButton"
+        android:textAllCaps="true"
+        android:textOn="Customer"
+        android:textOff="Farmer"
+        android:textStyle="bold"/>
+
+</LinearLayout>

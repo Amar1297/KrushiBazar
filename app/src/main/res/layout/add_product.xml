@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:isScrollContainer="true"
+    tools:context=".AddProduct"
+    android:background="#52BE80">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="Name"
+                android:inputType="text"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name"
+                android:layout_margin="20dp"
+                android:enabled="true"
+                android:focusable="true"
+                android:hint="Description"
+                android:inputType="textMultiLine"
+                android:isScrollContainer="true"
+                android:maxLines="5"
+                android:minLines="5"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description"
+                android:layout_margin="20dp"
+                android:hint="Price"
+                android:inputType="number"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/price"
+                android:layout_margin="20dp"
+                android:text="Status"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/statusgroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/price"
+                android:layout_toRightOf="@id/status"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/available"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:text="Available" />
+
+                <RadioButton
+                    android:id="@+id/notavailable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:text="Not Available" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/statusgroup"
+                android:layout_margin="20dp"
+                android:hint="Quantity"
+                android:inputType="number"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/quantity"
+                android:layout_margin="20dp"
+                android:hint="Contact"
+                android:inputType="number"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="275dp"
+                android:layout_height="32dp"
+                android:layout_below="@id/contact"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="25dp"
+                android:padding="2dp" />
+
+            <Button
+                android:id="@+id/choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageview"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"
+                android:background="@color/colorAccent"
+                android:text="Choose &amp; Upload" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
