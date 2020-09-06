@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -37,7 +38,8 @@ public class AddProduct extends AppCompatActivity{
     private int selectedId;
     private Bitmap bitmap;
     private Uri path;
-    private static String URL_PRODUCT = "https://krushibazaarofficial1.000webhostapp.com/upload.php";
+    private ProgressBar progressBar;
+    private static String URL_PRODUCT = "https://krushibazaarofficial1.000webhostapp.com/AddProducts.php";
     //private static String image_name = new Date().getTime()+"";
   String Email;
     @Override
@@ -53,22 +55,32 @@ public class AddProduct extends AppCompatActivity{
         radioGroup = findViewById(R.id.statusgroup);
         imageview = findViewById(R.id.imageview);
         choose = findViewById(R.id.choose);
-
+        progressBar=findViewById(R.id.progressBar);
+  progressBar.setVisibility(View.INVISIBLE);
         Intent intent=getIntent();
         Email=intent.getStringExtra("email");
 
 
         choose.setOnClickListener(new View.OnClickListener() {
                 @Override
-               /*public void onClick(View v) {
-                    Intent upd=new Intent(getApplicationContext(), Upls.class);
-                    upd.putExtra("email",Email);
-                    startActivity(upd);
-            }*/
                 public void onClick(View v) {
-                    Intent gallery = new Intent(Intent.ACTION_GET_CONTENT);
-                    gallery.setType("image/*");
-                    startActivityForResult(gallery,PICK_IMAGE_REQUEST);
+                    String n = name.getText().toString();
+                    String des = description.getText().toString();
+                    String p = price.getText().toString();
+                    String ste = status.getText().toString();
+                    String s = quantity.getText().toString();
+                    String number = contact.getText().toString();
+
+                    if (n.isEmpty() || des.isEmpty() || p.isEmpty()||ste.isEmpty()||s.isEmpty()||number.isEmpty()) {
+                        Toast.makeText(AddProduct.this, "Enter Above Filleds....", Toast.LENGTH_SHORT).show();
+                    } else if(number.length()!=10){
+                        Toast.makeText(AddProduct.this, "Enter 10 Digit Contact Number Only....", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        Intent gallery = new Intent(Intent.ACTION_GET_CONTENT);
+                        gallery.setType("image/*");
+                        startActivityForResult(gallery, PICK_IMAGE_REQUEST);
+                    }
                 }
 
         });
@@ -86,10 +98,13 @@ public class AddProduct extends AppCompatActivity{
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), path);
                 imageview.setImageBitmap(bitmap);
+                progressBar.setVisibility(View.VISIBLE);
+                choose.setVisibility(View.INVISIBLE);
+                makeRequest();
             } catch (IOException e) {
                 Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
             }
-            makeRequest();
+
         }
     }
 
@@ -108,14 +123,24 @@ public class AddProduct extends AppCompatActivity{
             public void onResponse(String response) {
                 try {
                     Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent(getApplicationContext(),DashBoard.class);
+                    startActivity(intent);
+                    finish();
+
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(),e.toString(), Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent(getApplicationContext(),DashBoard.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(getApplicationContext(),DashBoard.class);
+                startActivity(intent);
+                finish();
             }
         })
         {

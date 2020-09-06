@@ -88,6 +88,9 @@ public class Delete extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(Delete.this, response, Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(getApplicationContext(),DashBoard.class);
+                        startActivity(intent);
+                        finish();
                     }
                 }, new Response.ErrorListener() {
             @Override

@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
 
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/krishi_logo"
@@ -9,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Upls"></activity>
+        <activity android:name=".Upls" />
         <activity android:name=".Update" />
         <activity android:name=".Delete" />
         <activity android:name=".ProductsRecyclerView" />
@@ -29,13 +37,5 @@
         <activity android:name=".DashBoard" />
         <activity android:name=".ForgetPassword" />
     </application>
-
-    <uses-feature
-        android:name="android.hardware.camera2"
-        android:required="true" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

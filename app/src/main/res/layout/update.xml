@@ -29,7 +29,8 @@
             android:layout_height="95dp"
             android:text="Enter Following Data"
             android:textColor="@android:color/holo_green_dark"
-            android:textSize="35dp" />
+            android:textSize="35dp"
+            android:gravity="center_horizontal" />
 
         <EditText
             android:id="@+id/etDesc"
@@ -73,6 +74,15 @@
             android:gravity="center"
             android:text="Update"
             android:textColor="#ffffff" />
+
+        <ProgressBar
+            android:id="@+id/UpdateProgressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+           />
 
     </LinearLayout>
     </ScrollView>

@@ -3,26 +3,29 @@ package com.example.myapplication;
 public class Product {
     private String title;
     private String Desc;
-    private String price;
+    private int price;
     private String status;
-    private String quantity;
+    private int quantity;
+    private Double rating;
     private String image_url;
-    private  String contact;
-    private String rating;
+    private String contact;
+    private String Email;
 
     public Product() {
     }
 
-    public Product(String title, String desc, String price, String status, String quantity, String image_url, String contact, String rating) {
+    public Product(String Email,String title, String desc, int price, String status, int quantity, String image_url, String contact) {
+        this.Email=Email;
         this.title = title;
-        Desc = desc;
+        this.Desc = desc;
         this.price = price;
         this.status = status;
         this.quantity = quantity;
         this.image_url = image_url;
         this.contact = contact;
-        this.rating = rating;
+
     }
+
 
     public String getTitle() {
         return title;
@@ -40,11 +43,11 @@ public class Product {
         Desc = desc;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -56,12 +59,20 @@ public class Product {
         this.status = status;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 
     public String getImage_url() {
@@ -79,13 +90,4 @@ public class Product {
     public void setContact(String contact) {
         this.contact = contact;
     }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
 }
-

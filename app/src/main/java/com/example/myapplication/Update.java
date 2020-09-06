@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class Update extends AppCompatActivity {
     private Button update;
     Spinner spinner;
     String email;
+   private ProgressBar progressBar;
     ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,8 @@ public class Update extends AppCompatActivity {
         stat=findViewById(R.id.etStatus);
         qunt=findViewById(R.id.etQuntity);
         update=findViewById(R.id.Update);
-
+        progressBar=findViewById(R.id.UpdateProgressbar);
+        progressBar.setVisibility(View.INVISIBLE);
 
         Intent intent=getIntent();
         email=intent.getStringExtra("email");
@@ -72,6 +75,8 @@ public class Update extends AppCompatActivity {
                     Toast.makeText(Update.this, "Enter Above Filleds....", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    progressBar.setVisibility(View.VISIBLE);
+                    update.setVisibility(View.INVISIBLE);
                     UpdatProduct();
                 }
             }
@@ -97,6 +102,9 @@ public class Update extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
                 Toast.makeText(getApplicationContext(), "Check Your Internet Connection", Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(getApplicationContext(),DashBoard.class);
+                startActivity(intent);
+                finish();
             }
         }) {
             @Override
@@ -120,6 +128,9 @@ public class Update extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(Update.this, response, Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(getApplicationContext(),DashBoard.class);
+                        startActivity(intent);
+                        finish();
                     }
                 }, new Response.ErrorListener() {
             @Override
