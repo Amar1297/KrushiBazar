@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/custmar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#2fff">
+    <TextView
+        android:id="@+id/customer"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/customer_image"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:text="CUSTOMER"
+        android:textColor="#000"
+        android:fontFamily="sans-serif"
+        android:textSize="24dp"
+        />
+
+    <Button
+        android:id="@+id/customer_image"
+        android:layout_width="172dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="120dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/user"
+        android:textStyle="bold"  />
+
+
+    </RelativeLayout>
+</RelativeLayout>

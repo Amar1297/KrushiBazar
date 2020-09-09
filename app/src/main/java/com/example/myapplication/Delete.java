@@ -37,15 +37,18 @@ public class Delete extends AppCompatActivity {
 
         delete=findViewById(R.id.Deletedbutton);
         spinner=findViewById(R.id.SpinnerName);
-        Intent intent=getIntent();
-        email=intent.getStringExtra("email");
+//        Intent intent=getIntent();
+//        email=intent.getStringExtra("email");
+        SharedPreferenceManager preferenceManager = SharedPreferenceManager.getInstance(getApplicationContext());
+        email = preferenceManager.getEmail();
+
         ListNameProducts(email);
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                    DeleteProduct();
+                DeleteProduct();
             }
         });
     }

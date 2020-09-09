@@ -32,69 +32,69 @@ public class ProductDetails extends AppCompatActivity {
         getSupportActionBar().hide();
 
 
-   try {
-       titl = findViewById(R.id.title);
-       desc = findViewById(R.id.Desc);
-       price = findViewById(R.id.price);
-       staus = findViewById(R.id.status);
-       ratingBar = findViewById(R.id.Rating);
-       imageView = findViewById(R.id.imageView);
-       quntity = findViewById(R.id.quntity);
-       contact = findViewById(R.id.contact);
-       button1 = (Button) findViewById(R.id.wap_btn);
-       button2 = (Button) findViewById(R.id.call_btn);
+        try {
+            titl = findViewById(R.id.title);
+            desc = findViewById(R.id.Desc);
+            price = findViewById(R.id.price);
+            staus = findViewById(R.id.status);
+            ratingBar = findViewById(R.id.Rating);
+            imageView = findViewById(R.id.imageView);
+            quntity = findViewById(R.id.quntity);
+            contact = findViewById(R.id.contact);
+            button1 = (Button) findViewById(R.id.wap_btn);
+            button2 = (Button) findViewById(R.id.call_btn);
 
 
-       Intent intent = getIntent();
-       String ti = intent.getStringExtra("title");
-       String Desc = intent.getStringExtra("desc");
-       int pr = intent.getIntExtra("price",0);
-       String r = intent.getStringExtra("bar");
-       String img = intent.getStringExtra("url");
-       String sts = intent.getStringExtra("status");
-       int qunt = intent.getIntExtra("qunt",0);
-       final String number = intent.getStringExtra("contact");
+            Intent intent = getIntent();
+            String ti = intent.getStringExtra("title");
+            String Desc = intent.getStringExtra("desc");
+            int pr = intent.getIntExtra("price",0);
+            String r = intent.getStringExtra("bar");
+            String img = intent.getStringExtra("url");
+            String sts = intent.getStringExtra("status");
+            int qunt = intent.getIntExtra("qunt",0);
+            final String number = intent.getStringExtra("contact");
 
 
-       titl.setText("Title :- " + ti);
-       desc.setText("Description :- " + Desc);
-       price.setText("Price    :-  " + pr);
-       staus.setText("Status :-" + sts);
-       quntity.setText("Quantity :- " + qunt);
-       contact.setText("Contact NO. :-" + number);
-       ratingBar.setRating(Float.parseFloat(String.valueOf(4.2)));
-       Picasso.get().load(img.trim()).into(imageView);
+            titl.setText("Title :- " + ti);
+            desc.setText("Description :- " + Desc);
+            price.setText("Price    :-  " + pr);
+            staus.setText("Status :-" + sts);
+            quntity.setText("Quantity :- " + qunt);
+            contact.setText("Contact NO. :-" + number);
+            ratingBar.setRating(Float.parseFloat(String.valueOf(4.2)));
+            Picasso.get().load(img.trim()).into(imageView);
 
-       button2.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View arg0) {
-               Toast.makeText(ProductDetails.this, "Calling : " + number, Toast.LENGTH_SHORT).show();
-               Intent callIntent = new Intent(Intent.ACTION_DIAL);
-               callIntent.setData(Uri.parse("tel:" + number.trim()));
+            button2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    Toast.makeText(ProductDetails.this, "Calling : " + number, Toast.LENGTH_SHORT).show();
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" + number.trim()));
 
-               if (ActivityCompat.checkSelfPermission(ProductDetails.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                   // TODO: Consider calling
-                   //    ActivityCompat#requestPermissions
-                   // here to request the missing permissions, and then overriding
-                   //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                   //                                          int[] grantResults)
-                   // to handle the case where the user grants the permission. See the documentation
-                   // for ActivityCompat#requestPermissions for more details.
-
-
-                   return;
-               }
-               startActivity(callIntent);
-
-           }
+                    if (ActivityCompat.checkSelfPermission(ProductDetails.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
 
 
-       });
+                        return;
+                    }
+                    startActivity(callIntent);
+
+                }
 
 
-   }catch (Exception e){
-       Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-   }
+            });
+
+
+        }catch (Exception e){
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+        }
     }
     public void goToSo (View view) {
         String number = contact.getText().toString();
@@ -105,10 +105,10 @@ public class ProductDetails extends AppCompatActivity {
 
     }
 
-        private void goToUrl(String url) {
-            Uri uriUrl = Uri.parse(url);
-            Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-            startActivity(launchBrowser);
+    private void goToUrl(String url) {
+        Uri uriUrl = Uri.parse(url);
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
 
 
 

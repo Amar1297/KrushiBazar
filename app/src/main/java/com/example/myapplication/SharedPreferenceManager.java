@@ -39,6 +39,36 @@ public class SharedPreferenceManager {
         return  true;
     }
 
+    public void setEmail(String email){
+        SharedPreferences preferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =preferences.edit();
+        editor.putString("email",email);
+        editor.commit();
+    }
+
+    public String getEmail(){
+        SharedPreferences preferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        String Email = preferences.getString("email","");
+
+        return  Email;
+    }
+
+    public void setsession(boolean status){
+        SharedPreferences preferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =preferences.edit();
+        editor.putString("bool",String.valueOf(status));
+        editor.commit();
+    }
+
+
+    public boolean getsession(){
+        SharedPreferences preferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        String value = preferences.getString("bool","");
+
+        return Boolean.parseBoolean(value);
+    }
+
+
     public  boolean isRegisteresIn()
     {
         SharedPreferences sharedPreferences=mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
@@ -59,11 +89,6 @@ public class SharedPreferenceManager {
 
     }
 
-    public String getEmail()
-    {
-        SharedPreferences sharedPreferences=mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_USER_EMAIL,null);
-    }
 
     public String getPassword()
     {

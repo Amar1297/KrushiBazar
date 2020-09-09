@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/farmar"
+    tools:context=".ui.main.PlaceholderFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="right|top"
+        android:text="SWIP->"
+        android:textColor="#000"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/farmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/farmar_img"
+        android:layout_centerHorizontal="true"
+        android:text="FARMER"
+        android:textColor="#000"
+        android:fontFamily="sans-serif"
+        android:textSize="24dp"
+        />
+
+
+    <Button
+        android:id="@+id/farmar_img"
+        android:layout_width="172dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="120dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/supplier"
+        android:textStyle="bold" />
+
+</RelativeLayout>

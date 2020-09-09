@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FEF5E7"
+    android:background="@drawable/gradient"
     tools:context=".Update">
     <ScrollView
         android:layout_width="match_parent"
@@ -19,8 +19,9 @@
         <Spinner
             android:id="@+id/SpinnerName"
             android:layout_width="375dp"
-            android:layout_height="94dp"
+            android:layout_height="50dp"
             android:layout_marginStart="0dp"
+            android:background="@drawable/grad_backgroundblue"
             android:layout_marginLeft="0dp" />
 
         <TextView
@@ -28,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="95dp"
             android:text="Enter Following Data"
-            android:textColor="@android:color/holo_green_dark"
+            android:textColor="#000"
             android:textSize="35dp"
             android:gravity="center_horizontal" />
 
@@ -65,14 +66,15 @@
             android:textSize="30dp" />
 
         <Button
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/Update"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_green_dark"
+            android:background="@drawable/btn_shape"
             android:gravity="center"
-            android:text="Update"
+            android:fontFamily="sans-serif"
+            android:text="UPDATE"
             android:textColor="#ffffff" />
 
         <ProgressBar

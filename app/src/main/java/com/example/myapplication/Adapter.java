@@ -47,7 +47,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
             return VIEW_TYPE_SMALL;
         }
     }
-    Adapter(Context context,List<Product> products){
+
+    Adapter(Context context, List<Product> products){
         this.layoutInflater=LayoutInflater.from(context);
         this.products=products;
         myData=new ArrayList<>(products);
@@ -66,10 +67,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Product item = products.get(position % 4);
-        holder.texttitle.setText("Name:-" + item.getTitle());
+        Product item = products.get(position);
+        holder.texttitle.setText(item.getTitle());
         Picasso.get().load(item.getImage_url()).into(holder.imageView);
         if (getItemViewType(position) == VIEW_TYPE_BIG) {
+            holder.texttitle.setText("Name:-" + item.getTitle());
             holder.textDesc.setText("Dsc:-" + item.getDesc());
             holder.textprice.setText("Price:-" + item.getPrice());
             holder.ratingBar.setRating((float) 4.2);

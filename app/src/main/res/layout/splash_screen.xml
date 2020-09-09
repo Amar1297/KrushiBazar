@@ -17,6 +17,7 @@
         android:src="@drawable/krishi_logo" />
 
     <TextView
+        android:id="@+id/logotext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -26,6 +27,16 @@
         android:textColor="#4CAF50"
         android:textSize="40dp"
         android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Way of Profitable Marketing"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        />
 
     
 

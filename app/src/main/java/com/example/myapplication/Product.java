@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+
 public class Product {
     private String title;
     private String Desc;

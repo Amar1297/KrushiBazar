@@ -8,7 +8,8 @@ import android.widget.Button;
 
 public class DashBoard extends AppCompatActivity {
     Button add,update,profile,logout,delete;
- String email;
+    String email;
+    private SharedPreferenceManager preferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,13 +21,16 @@ public class DashBoard extends AppCompatActivity {
         logout = findViewById(R.id.log_out);
         getSupportActionBar().hide();
 
-        Intent intent=getIntent();
-        email=intent.getStringExtra("email");
+        preferenceManager = SharedPreferenceManager.getInstance(getApplicationContext());
+        /// Intent intent=getIntent();
+        email=preferenceManager.getEmail();//intent.getStringExtra("email");
+
+
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent addpro=new Intent(getApplicationContext(), AddProduct.class);
-                addpro.putExtra("email",email);
                 startActivity(addpro);
 
             }
@@ -37,7 +41,6 @@ public class DashBoard extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent upd=new Intent(getApplicationContext(), Update.class);
-                upd.putExtra("email",email);
                 startActivity(upd);
             }
         });
@@ -46,7 +49,6 @@ public class DashBoard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent pro=new Intent(getApplicationContext(), Profile.class);
-                pro.putExtra("email",email);
                 startActivity(pro);
             }
         });
@@ -55,7 +57,6 @@ public class DashBoard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent dele=new Intent(getApplicationContext(), Delete.class);
-                dele.putExtra("email",email);
                 startActivity(dele);
             }
         });
@@ -64,8 +65,19 @@ public class DashBoard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                SharedPreferenceManager preferenceManager = SharedPreferenceManager.getInstance(getApplicationContext());
+                preferenceManager.setsession(false);
+                preferenceManager.setEmail("");
                 startActivity(new Intent(getApplicationContext(), Login.class));
+                finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),MainActivity2.class));
+        finish();
     }
 }

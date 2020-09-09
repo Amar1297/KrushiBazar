@@ -16,4 +16,27 @@
         app:showAsAction="always"
         />
 
+    <item
+        android:id="@+id/sortbypriceAsc"
+        android:title="Price Low to High" />
+
+    <item
+        android:id="@+id/sortbypricebyDesc"
+        android:title="Price High to Low" />
+
+    <item
+        android:id="@+id/sortbyquantity"
+        android:title="Quantity Low to High" />
+
+    <item
+        android:id="@+id/sortbyName"
+        android:title="Name A-Z" />
+
+    <item
+        android:id="@+id/sortbynearby"
+        android:title="NearBy Places"/>
+
+
+
+
 </menu>

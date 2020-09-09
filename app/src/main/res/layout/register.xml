@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="#ffd59a"
+    android:background="@drawable/grad_backgroundblue"
     android:orientation="vertical"
     tools:context=".Register">
 
@@ -36,9 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/text_shp"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:paddingLeft="8dp" />
@@ -48,6 +47,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         app:passwordToggleEnabled="true">
 
         <EditText
@@ -57,7 +57,6 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/text_shp"
             android:hint="Password"
             android:inputType="textPassword"
             android:paddingLeft="8dp" />
@@ -66,7 +65,8 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
 
 
 
@@ -74,7 +74,8 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
 
         <EditText
             android:id="@+id/ownername"
@@ -83,7 +84,6 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/text_shp"
             android:hint="Farmer name"
             android:inputType="textPersonName"
             android:paddingLeft="8dp" />
@@ -92,7 +92,8 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
 
         <EditText
             android:id="@+id/Mobileno"
@@ -101,7 +102,6 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/text_shp"
             android:hint="Contact"
             android:inputType="text|number"
             android:paddingLeft="8dp" />
@@ -110,7 +110,8 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
 
         <EditText
             android:id="@+id/Address"
@@ -119,9 +120,16 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/text_shp"
             android:hint="Address"
-            android:paddingLeft="8dp" />
+            android:paddingLeft="8dp"
+            android:layout_margin="20dp"
+            android:enabled="true"
+            android:focusable="true"
+            android:inputType="textMultiLine"
+            android:isScrollContainer="true"
+            android:maxLines="5"
+            android:minLines="5"
+            android:textStyle="bold"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -138,7 +146,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:background="#3F51B5"
+        android:background="@drawable/btn_shape"
         android:fontFamily="serif"
         android:text="R e g i s t e r"
         android:textColor="#fff"

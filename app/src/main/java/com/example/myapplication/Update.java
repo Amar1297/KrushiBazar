@@ -42,14 +42,14 @@ public class Update extends AppCompatActivity {
     private Button update;
     Spinner spinner;
     String email;
-   private ProgressBar progressBar;
+    private ProgressBar progressBar;
     ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.update);
-       spinner=findViewById(R.id.SpinnerName);
+        spinner=findViewById(R.id.SpinnerName);
         desc=findViewById(R.id.etDesc);
         price=findViewById(R.id.etprice);
         stat=findViewById(R.id.etStatus);
@@ -58,8 +58,10 @@ public class Update extends AppCompatActivity {
         progressBar=findViewById(R.id.UpdateProgressbar);
         progressBar.setVisibility(View.INVISIBLE);
 
-        Intent intent=getIntent();
-        email=intent.getStringExtra("email");
+//        Intent intent=getIntent();
+//        email=intent.getStringExtra("email");
+        SharedPreferenceManager preferenceManager = SharedPreferenceManager.getInstance(getApplicationContext());
+        email = preferenceManager.getEmail();
         ListNameProducts(email);
 
         update.setOnClickListener(new View.OnClickListener() {
@@ -70,9 +72,14 @@ public class Update extends AppCompatActivity {
                 String s=stat.getText().toString() ;
                 String q=qunt.getText().toString();
 
-                if(TextUtils.isEmpty(d)||TextUtils.isEmpty(p)||TextUtils.isEmpty(s)||TextUtils.isEmpty(q))
-                {
-                    Toast.makeText(Update.this, "Enter Above Filleds....", Toast.LENGTH_SHORT).show();
+                if(TextUtils.isEmpty(d)) {
+                    desc.setError("Enter Description");
+                }else if(TextUtils.isEmpty(p)) {
+                    price.setError("Enter Price");
+                }else if(TextUtils.isEmpty(s)) {
+                    stat.setError("Enter Status");
+                }else if(TextUtils.isEmpty(q)){
+                    qunt.setError("Enter Quantity");
                 }
                 else {
                     progressBar.setVisibility(View.VISIBLE);
@@ -142,7 +149,7 @@ public class Update extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String,String> params=new HashMap<String, String>();
-                params.put("name",spinner.getSelectedItem().toString());
+                params.put("name",spinner.getSelectedItem().toString().trim());
                 params.put("desc",desc.getText().toString());
                 params.put("price",price.getText().toString());
                 params.put("stat",stat.getText().toString());

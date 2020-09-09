@@ -34,8 +34,10 @@ public class Profile extends AppCompatActivity {
         textmobile = findViewById(R.id.textviewmobile);
         textaddress = findViewById(R.id.textviewadddress);
 
-        Intent intent = getIntent();
-        email = intent.getStringExtra("email");
+//        Intent intent = getIntent();
+//        email = intent.getStringExtra("email");
+        SharedPreferenceManager preferenceManager = SharedPreferenceManager.getInstance(getApplicationContext());
+        email = preferenceManager.getEmail();
 
         // FetchData(email);
         Fetch(email);
@@ -47,8 +49,8 @@ public class Profile extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, PRFILE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-               // Toast.makeText(Profile.this, ""+response, Toast.LENGTH_SHORT).show();
-               String[] str=response.split(",");
+                // Toast.makeText(Profile.this, ""+response, Toast.LENGTH_SHORT).show();
+                String[] str=response.split(",");
                 textemail.setText("Email:-"+str[0]);
 
 

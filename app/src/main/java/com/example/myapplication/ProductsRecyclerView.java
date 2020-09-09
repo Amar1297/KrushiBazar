@@ -1,10 +1,12 @@
 package com.example.myapplication;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static com.example.myapplication.Adapter.SPAN_COUNT_ONE;
@@ -28,7 +32,7 @@ import static com.example.myapplication.Adapter.SPAN_COUNT_THREE;
 
 public class ProductsRecyclerView extends AppCompatActivity {
     private static final String PRODUCT_URL = "https://krushibazaarofficial1.000webhostapp.com/ProductsDisplay.php";
-    android.support.v7.widget.RecyclerView recyclerView;
+    RecyclerView recyclerView;
     List<Product> products;
     Adapter adapter;
     private ProgressBar progressBar;
@@ -40,13 +44,13 @@ public class ProductsRecyclerView extends AppCompatActivity {
         setContentView(R.layout.recycler_view);
         recyclerView = findViewById(R.id.recycle);
         products = new ArrayList<>();
-        progressBar=findViewById(R.id.progressBar);
+        progressBar=findViewById(R.id.recycleprogressbar);
         progressBar.setVisibility(View.VISIBLE);
         extractProduct();
 
-        progressBar.setVisibility(View.INVISIBLE);
+
         gridLayoutManager = new GridLayoutManager(getApplicationContext(),SPAN_COUNT_ONE);
-        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
@@ -68,6 +72,9 @@ public class ProductsRecyclerView extends AppCompatActivity {
                 return false;
             }
         });
+
+
+
         return true;
     }
 
@@ -78,8 +85,69 @@ public class ProductsRecyclerView extends AppCompatActivity {
             switchIcon(item);
             return true;
         }
+
+        if(item.getItemId() == R.id.sortbypriceAsc){
+            Collections.sort(products, new Comparator<Product>() {
+                @Override
+                public int compare(Product product, Product product1) {
+                    int i=product.getPrice();
+                    int j=product1.getPrice();
+                    int c=0;
+                    if(i>j) c=0;
+                    else c=-1;
+                    return c;
+                }
+            });
+            refresh();
+        }
+
+        if(item.getItemId() == R.id.sortbypricebyDesc){
+            Collections.sort(products, new Comparator<Product>() {
+                @Override
+                public int compare(Product product, Product product1) {
+                    int i=product.getPrice();
+                    int j=product1.getPrice();
+                    int c=0;
+                    if(i<j) c=0;
+                    else c=-1;
+                    return c;
+                }
+            });
+            refresh();
+        }
+
+        if(item.getItemId() == R.id.sortbyquantity){
+            Collections.sort(products, new Comparator<Product>() {
+                @Override
+                public int compare(Product product, Product product1) {
+                    int i=product.getQuantity();
+                    int j=product1.getQuantity();
+                    int c=0;
+                    if(i>j) c=0;
+                    else c=-1;
+                    return c;
+                }
+            });
+            refresh();
+        }
+
+        if(item.getItemId() == R.id.sortbyName){
+            Collections.sort(products, new Comparator<Product>() {
+                @Override
+                public int compare(Product product, Product product1) {
+                    String i=product.getTitle();
+                    String j=product1.getTitle();
+                    return i.compareTo(j);
+                }
+            });
+            refresh();
+        }
+
         return super.onOptionsItemSelected(item);
     }
+
+
+
 
     private void switchLayout() {
         if (gridLayoutManager.getSpanCount() == SPAN_COUNT_ONE) {
@@ -104,6 +172,7 @@ public class ProductsRecyclerView extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONArray ProductArray=new JSONArray(response);
+                    products.clear();
                     for(int i=0;i<ProductArray.length();i++){
                         JSONObject productObject=ProductArray.getJSONObject(i);
 
@@ -121,19 +190,13 @@ public class ProductsRecyclerView extends AppCompatActivity {
                         products.add(product);
                     }
 
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    adapter=new Adapter(getApplicationContext(),products);
-                    recyclerView.setAdapter(adapter);
 
+                    refresh();
 
-                    gridLayoutManager = new GridLayoutManager(getApplicationContext(), SPAN_COUNT_ONE);
-                    adapter = new Adapter(products, gridLayoutManager);
-                    recyclerView.setAdapter(adapter);
-                    recyclerView.setLayoutManager(gridLayoutManager);
-
-
+                    progressBar.setVisibility(View.GONE);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Toast.makeText(ProductsRecyclerView.this, e.toString(), Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                 }
 
 
@@ -142,10 +205,31 @@ public class ProductsRecyclerView extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(ProductsRecyclerView.this,error.getMessage(),Toast.LENGTH_SHORT).show();
-
+                progressBar.setVisibility(View.GONE);
             }
         });
         Volley.newRequestQueue(this).add(stringRequest);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),MainActivity2.class));
+        finish();
+
+        products.clear();
+    }
+
+
+    public  void refresh(){
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        adapter=new Adapter(getApplicationContext(),products);
+        recyclerView.setAdapter(adapter);
+
+        gridLayoutManager = new GridLayoutManager(getApplicationContext(), SPAN_COUNT_ONE);
+        adapter = new Adapter(products, gridLayoutManager);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(gridLayoutManager);
     }
 }
