@@ -1,9 +1,18 @@
 package com.example.myapplication;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -40,7 +49,9 @@ public class AddProduct extends AppCompatActivity{
     private Uri path;
     private ProgressBar progressBar;
     private static String URL_PRODUCT = "https://krushibazaarofficial1.000webhostapp.com/AddProducts.php";
-    private String latitude="" , longitude="" ;
+   LocationManager locationManager;
+    private String latitude="", longitude="";
+    private static  final int REQUEST_LOCATION=1;
 
 
     String Email;
@@ -67,11 +78,23 @@ public class AddProduct extends AppCompatActivity{
             SharedPreferenceManager preferenceManager = SharedPreferenceManager.getInstance(getApplicationContext());
             Email = preferenceManager.getEmail();
 
+            ActivityCompat.requestPermissions(this,new String[]
+                    {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+
             getlocbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view)
                 {
+                    locationManager=(LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
+                    if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+                    {
+                        OnGPS();
+                    }
+                    else
+                    {
+                        getLocation();
+                    }
                 }
             });
             selectfile.setOnClickListener(new View.OnClickListener() {
@@ -85,31 +108,30 @@ public class AddProduct extends AppCompatActivity{
                     String Contect = contact.getText().toString().trim();
 
 
-//                    if (Name.isEmpty() || Desc.isEmpty() || Price.isEmpty() || Quntity.isEmpty() || Contect.isEmpty()) {
-//                        if (Name.isEmpty())
-//                            name.setError("Enter Name");
-//                        if (Desc.isEmpty())
-//                            description.setError("Enter Description");
-//
-//                        if (Price.isEmpty())
-//                            price.setError("Enter Price");
-//
-//                        if (Quntity.isEmpty())
-//                            quantity.setError("Enter Quantity");
-//                        if (Contect.length() != 10) {
-//                            contact.setError("Enter 10 digit only");
-//                        }
-//                    } else if (Contect.length() != 10) {
-//                        contact.setError("Enter 10 digit only");
-//                    }
-                    if (longitude.length() > 3 || latitude.length()>3) {
+                    if (Name.isEmpty() || Desc.isEmpty() || Price.isEmpty() || Quntity.isEmpty() || Contect.isEmpty()) {
+                        if (Name.isEmpty())
+                            name.setError("Enter Name");
+                        if (Desc.isEmpty())
+                            description.setError("Enter Description");
+
+                        if (Price.isEmpty())
+                            price.setError("Enter Price");
+
+                        if (Quntity.isEmpty())
+                            quantity.setError("Enter Quantity");
+                        if (Contect.length() != 10) {
+                            contact.setError("Enter 10 digit only");
+                        }
+                    } else if (Contect.length() != 10) {
+                        contact.setError("Enter 10 digit only");
+                    }
+                    else if (longitude.length() < 3 || latitude.length() < 3) {
                         Toast.makeText(AddProduct.this, "Share Location Please...", Toast.LENGTH_SHORT).show();
                     } else {
-//                        Intent gallery = new Intent(Intent.ACTION_GET_CONTENT);
-//                        gallery.setType("image/*");
-//                        startActivityForResult(gallery, PICK_IMAGE_REQUEST);
-                        Toast.makeText(AddProduct.this,latitude+longitude, Toast.LENGTH_SHORT).show();
-                        contact.setText(latitude+longitude);
+                        Intent gallery = new Intent(Intent.ACTION_GET_CONTENT);
+                        gallery.setType("image/*");
+                        startActivityForResult(gallery, PICK_IMAGE_REQUEST);
+
                     }
                 }
 
@@ -135,7 +157,7 @@ public class AddProduct extends AppCompatActivity{
                 imageview.setImageBitmap(bitmap);
                 progressBar.setVisibility(View.VISIBLE);
                 selectfile.setVisibility(View.INVISIBLE);
-                // makeRequest();
+                 makeRequest();
             } catch (IOException e) {
                 Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
             }
@@ -190,47 +212,89 @@ public class AddProduct extends AppCompatActivity{
                 map.put("contact", contact.getText().toString().trim());
                 map.put("image_name", Email + name.getText().toString().trim());
                 map.put("image", imageToString(bitmap).trim());
-                map.put("latitude", latitude);
-                map.put("longitude", longitude);
+                map.put("latitude", latitude.trim());
+                map.put("longitude", longitude.trim());
                 return map;
             }
         };
         requestQueue.add(request);
     }
 
-//    private void getLoction() {
-//
-//        final LocationRequest locationRequest = new LocationRequest();
-//        locationRequest.setInterval(1000);
-//        locationRequest.setFastestInterval(1000);
-//        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-//
-//        if (androidx.core.app.ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//
-//            return;
-//        }
-//        LocationServices.getFusedLocationProviderClient(AddProduct.this)
-//                .requestLocationUpdates(locationRequest, new LocationCallback() {
-//                    @Override
-//                    public void onLocationResult(LocationResult locationResult) {
-//                        super.onLocationResult(locationResult);
-//                        LocationServices.getFusedLocationProviderClient(AddProduct.this)
-//                                .removeLocationUpdates(this);
-//                        if (locationRequest != null && locationResult.getLocations().size()>0){
-//                            int locaindex = locationResult.getLocations().size()-1;
-//
-//                            double lat = locationResult.getLocations().get(locaindex).getLatitude();
-//
-//                            double longi = locationResult.getLocations().get(locaindex).getLongitude();
-//
-//                            Toast.makeText(AddProduct.this, String.format("latitude=%s \n Longitude = %s",lat,longi), Toast.LENGTH_SHORT).show();
-//
-//                             latitude = String.valueOf(lat);
-//                             longitude = String.valueOf(longi);
-//
-//                        }
-//                    }
-//                }, Looper.getMainLooper());
-//    }
 
+    private void getLocation() {
+
+        //Check Permissions again
+
+        if (ActivityCompat.checkSelfPermission(AddProduct.this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(AddProduct.this,
+
+                Manifest.permission.ACCESS_COARSE_LOCATION) !=PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this,new String[]
+                    {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+        }
+        else
+        {
+            Location LocationGps= locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            Location LocationNetwork=locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            Location LocationPassive=locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+
+            if (LocationGps !=null)
+            {
+                double lat=LocationGps.getLatitude();
+                double longi=LocationGps.getLongitude();
+
+                latitude=String.valueOf(lat);
+                longitude=String.valueOf(longi);
+
+                contact.setText("Your Location:"+"\n"+"Latitude= "+latitude+"\n"+"Longitude= "+longitude);
+            }
+            else if (LocationNetwork !=null)
+            {
+                double lat=LocationNetwork.getLatitude();
+                double longi=LocationNetwork.getLongitude();
+
+                latitude=String.valueOf(lat);
+                longitude=String.valueOf(longi);
+
+                //contact.setText("Your Location:"+"\n"+"Latitude= "+latitude+"\n"+"Longitude= "+longitude);
+            }
+            else if (LocationPassive !=null)
+            {
+                double lat=LocationPassive.getLatitude();
+                double longi=LocationPassive.getLongitude();
+
+                latitude=String.valueOf(lat);
+                longitude=String.valueOf(longi);
+
+                //contact.setText("Your Location:"+"\n"+"Latitude= "+latitude+"\n"+"Longitude= "+longitude);
+            }
+            else
+            {
+                Toast.makeText(this, "Can't Get Your Location", Toast.LENGTH_SHORT).show();
+            }
+
+            //Thats All Run Your App
+        }
+
+    }
+
+    private void OnGPS() {
+
+        final AlertDialog.Builder builder= new AlertDialog.Builder(this);
+
+        builder.setMessage("Enable GPS").setCancelable(false).setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+            }
+        }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.cancel();
+            }
+        });
+        final AlertDialog alertDialog=builder.create();
+        alertDialog.show();
+    }
 }

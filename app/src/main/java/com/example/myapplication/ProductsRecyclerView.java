@@ -143,6 +143,42 @@ public class ProductsRecyclerView extends AppCompatActivity {
             refresh();
         }
 
+        if(item.getItemId() == R.id.sortbynearby){
+            Collections.sort(products, new Comparator<Product>() {
+                @Override
+                public int compare(Product product, Product product1) {
+
+                    double i=product.getLatitude(),i1=product1.getLatitude();
+                    double j=product.getLongitude(),j1=product1.getLongitude();
+
+//                    double earthRadius = 3958.75;
+//
+//                    double dLat = Math.toRadians(i1-i);
+//                    double dLog = Math.toRadians(j1-j);
+//
+//                    double sindlat = Math.sin(dLat/2);
+//                    double sindlog = Math.sin(dLog/2);
+//
+//                    double a =Math.pow(sindlat,2)+Math.pow(sindlog,2)
+//                            +Math.cos(Math.toRadians(i))*Math.cos(Math.toRadians(i1));
+//
+//                    double c = 2* Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+//
+//                    double distance = earthRadius * c;
+//
+//                    return (int) distance;
+                    int c=0;
+                    if(i>j && i1>j1)
+                        c=0;
+                    else
+                        c=-1;
+
+                    return c;
+                }
+            });
+            refresh();
+            }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -184,9 +220,11 @@ public class ProductsRecyclerView extends AppCompatActivity {
                         String status=productObject.getString("status");
                         int quantity=productObject.getInt("quantity");
                         String image_url=productObject.getString("path");
+                        double lati = Double.parseDouble(productObject.getString("latitude"));
+                        double longi = Double.parseDouble(productObject.getString("longitude"));
 
 
-                        Product product=new Product(email,pname,desc,price,status,quantity,image_url,contact);
+                        Product product=new Product(email,pname,desc,price,status,quantity,image_url,contact,lati,longi);
                         products.add(product);
                     }
 
