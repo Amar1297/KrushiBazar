@@ -246,7 +246,6 @@ public class AddProduct extends AppCompatActivity{
                 latitude=String.valueOf(lat);
                 longitude=String.valueOf(longi);
 
-                contact.setText("Your Location:"+"\n"+"Latitude= "+latitude+"\n"+"Longitude= "+longitude);
             }
             else if (LocationNetwork !=null)
             {
@@ -256,17 +255,14 @@ public class AddProduct extends AppCompatActivity{
                 latitude=String.valueOf(lat);
                 longitude=String.valueOf(longi);
 
-                //contact.setText("Your Location:"+"\n"+"Latitude= "+latitude+"\n"+"Longitude= "+longitude);
             }
-            else if (LocationPassive !=null)
-            {
-                double lat=LocationPassive.getLatitude();
-                double longi=LocationPassive.getLongitude();
+            else if (LocationPassive !=null) {
+                double lat = LocationPassive.getLatitude();
+                double longi = LocationPassive.getLongitude();
 
-                latitude=String.valueOf(lat);
-                longitude=String.valueOf(longi);
+                latitude = String.valueOf(lat);
+                longitude = String.valueOf(longi);
 
-                //contact.setText("Your Location:"+"\n"+"Latitude= "+latitude+"\n"+"Longitude= "+longitude);
             }
             else
             {
