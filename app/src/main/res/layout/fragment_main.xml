@@ -17,7 +17,9 @@
         android:gravity="right|top"
         android:text="SWIP->"
         android:textColor="#000"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="6dp" />
 
     <TextView
         android:id="@+id/farmar"

@@ -24,6 +24,8 @@ public class MainActivity2 extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
         viewPager.setAdapter(sectionsPagerAdapter);
+
+
 //        TabLayout tabs = findViewById(R.id.tabs);
 //        tabs.setupWithViewPager(viewPager);
 //        FloatingActionButton fab = findViewById(R.id.fab);
@@ -36,33 +38,33 @@ public class MainActivity2 extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 
-        LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-
-        boolean gps_enable = false;
-        boolean network_enable = false;
-
-        gps_enable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-        network_enable = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-        if (!gps_enable && !network_enable) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-            builder.setMessage("Please Enable GPS and Internet........")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                            startActivity(intent);
-                        }
-                    });
-
-            AlertDialog alertDialog = builder.create();
-
-            alertDialog.setTitle("Enable GPS");
-            alertDialog.show();
-        }
+//        LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+//
+//        boolean gps_enable = false;
+//        boolean network_enable = false;
+//
+//        gps_enable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+//
+//        network_enable = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+//
+//        if (!gps_enable && !network_enable) {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//
+//            builder.setMessage("Please Enable GPS and Internet........")
+//                    .setCancelable(false)
+//                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+//                            startActivity(intent);
+//                        }
+//                    });
+//
+//            AlertDialog alertDialog = builder.create();
+//
+//            alertDialog.setTitle("Enable GPS");
+//            alertDialog.show();
+//        }
     }
 
 }
